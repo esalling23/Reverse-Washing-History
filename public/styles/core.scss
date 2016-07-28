@@ -1,0 +1,36 @@
+$color-black: #000000;
+$color-gray: #999999;
+$color-gray-light: #cccccc;
+$color-gray-dark: #666666;
+
+$color-red: #C52C2F;
+$color-blue: #0066cc;
+$color-blue-dark: #000099;
+$color-blue-light: #66ccff;
+$color-green: #339966;
+$color-yellow: #ffff66;
+
+.app-container {
+
+	.red {
+		background-color: $color-red;
+	}
+
+	.error {
+		display: none;
+	}
+
+	.hidden {
+		display: none;
+		// opacity: 0;
+	 //    transition: visibility 0s, opacity 0.5s linear;
+		// visibility: hidden;
+	}
+
+	.menu {
+		.email {
+			display: none;
+		}
+	}
+
+}

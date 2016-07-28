@@ -1,0 +1,11 @@
+.app-container .red {
+  background-color: #C52C2F; }
+
+.app-container .error {
+  display: none; }
+
+.app-container .hidden {
+  display: none; }
+
+.app-container .menu .email {
+  display: none; }
