@@ -24,6 +24,7 @@ keystone.set('500', function(err, req, res, next) {
  
 // Load Routes
 var routes = {
+    api: importRoutes('./api'),
     views: importRoutes('./views')
 };
  
@@ -32,6 +33,10 @@ exports = module.exports = function(app) {
     
     app.get('/', routes.views.index);
 
-    app.post('/api/create/:user', keystone.middleware.api, routes.api.data.create);
+    // app.get('/login', function(req, res) {
+    //   res.sendfile('views/login.html');
+    // });
+
+    app.post('/api/create', keystone.middleware.api, routes.api.data.create);
     
 }

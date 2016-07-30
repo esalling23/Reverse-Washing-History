@@ -1,30 +1,114 @@
 <script type="text/javascript">
 
-	$('#btn_submit').click(function(evt) {
+$(document).ready(function () {
+
+	$('.btn-submit').click(function(evt) {
+		// var pkg = getFormData($(this));
+		console.log(evt, "evt");
 		var data = {};
 		/*data.contentCategories = $(".form :input.active").map(function(){
 														    return $(this).val();
 														 }).get();*/
-		data.accessCode = $('#access-code').text();
+		data.username = $('#username').val();
+		data.password = $('#password').val();
+		data.email = $('#email').val();
 
-	  $.post( 
-	  	"/api/create/" + $(evt.currentTarget).data().type,
-			data,
-			function( data ) {
+		console.log(data);
 
-				if(data.error_code !== undefined) {
+		if (!data.password || !data.username || !data.email) {
+			console.log ("fucke");
+			  
+			} else {
+				console.log("dick");
 
-					if(data.error_code === 'need_content')
-						$('#session-create #categories').addClass('invalid');
-					
-					$('#session-create .error').text(data.msg).fadeIn();
-					
-					return;
-				}
+				$.post("/api/create",data, function(data){
+            if(data==='done')
+              {
+                alert("login success");
+              }
+          });
+				// $.post( 
+			 //  	"/api/create",
+				// 	data
+					// function( data ) {
 
-			  window.location = data;
+					// 	console.log("hi");
+
+					// 	// if(data.error_code !== undefined) {
+
+					// 	// 	if(data.error_code === 'need_content')
+					// 	// 		$('#session-create #categories').addClass('invalid');
+							
+					// 	// 	$('#session-create .error').text(data.msg).fadeIn();
+							
+					// 	// 	return;
+					// 	// }
+
+					//   window.location = data;
+					// }
+				// );
 			}
-		);
+
 	});
+
+	//Get form data - JR
+
+	function getFormData(submitElement) {
+
+			var pkg;
+
+			if(submitElement[0].dataset === undefined)
+				return undefined;
+			
+			try {
+				pkg = JSON.parse(submitElement[0].dataset.package);
+			}
+			catch(e) {
+				pkg = submitElement[0].dataset.package;
+			}
+
+			if($.isPlainObject(pkg)) {
+				$.each(Object.keys(pkg), function( key, value ) {
+
+					if(pkg[value] !== undefined)
+					  pkg[value] = $(pkg[value].toString()).val();
+
+				});
+			}
+			else if(!submitElement.is('button'))
+				pkg = $(pkg).val();
+
+			return pkg;
+
+		}
+
+		//player login - JR
+
+		// function playerLogin(data) {
+
+		// 				// Save current game code to local storage
+		// 				sessionStorage.setItem('active', true);
+
+		// 				// Open socket connection
+		// 				if(socket === undefined) {
+		// 			    socket = io('//{{host}}');
+		// 			    registerEvents();
+		// 			  }
+
+		// 				playerName = $('#player_name').val();
+		// 				sessionStorage.setItem('username', playerName);
+
+		// 				socket.on('disconnect', function(){
+		// 				   // alert('disconnected!')
+		// 				});
+
+		// 				console.log('Connecting to game "' + gameCode + '".');
+
+		//         // Log player in
+		// 				socket.emit('login:submit', emitData({username: playerName, uid: data.uid}));
+
+		// 			}
+});
+
 
 </script>

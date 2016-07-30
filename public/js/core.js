@@ -22,21 +22,21 @@ $(function() {
 
 	var addUser = function() {
 		console.log ("adding...");
-		let user = "bob";
-		let userEmail = "email";
-		let password = "pass";
+		// let user = "bob";
+		// let userEmail = "email";
+		// let password = "pass";
 
 		
 	};
 
 
     // Main Menu 
-    var login = $('.login');
-    var signup = $('.signup');
+    var login = $('#login');
+    var signup = $('#signup');
     var error = $('.error');
-    var user = $('.username');
-	var pass = $('.password');
-	var emailinput = $('.email');
+    var user = $('#username');
+	var pass = $('#password');
+	var email = $('#email');
 	console.log (section.attr("id"));
     
 	login.click(function() {
@@ -57,7 +57,7 @@ $(function() {
     		}
     	} else if (section.attr("id") === "signup") {
     		error.fadeOut();
-    		emailinput.fadeOut();
+    		email.fadeOut();
     		user.attr("placeholder", "Username or Email");
 			sectionChange("login");
 		}
@@ -70,7 +70,7 @@ $(function() {
 		if (section.attr("id") === "login"){
 	    		error.fadeOut();
 
-    		emailinput.fadeIn();
+    		email.fadeIn();
     		user.attr("placeholder", "Username");
     		sectionChange("signup");
     	} else if (section.attr("id") === "signup") {

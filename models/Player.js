@@ -1,7 +1,13 @@
 var keystone = require('keystone'),
     Types = keystone.Field.Types;
  
-var Player = new keystone.List('Player');
+var Player = new keystone.List('Player', {
+	label: 'Players',
+		singular: 'Player',
+		track: true,
+		// nodelete: true,
+		nocreate: false
+});
  
 Player.add({
     userName: { type: String, required: true, initial: true, index: true },
@@ -12,3 +18,4 @@ Player.add({
 });
  
 Player.register();
+// module.exports = keystone.model('Player', Player);
