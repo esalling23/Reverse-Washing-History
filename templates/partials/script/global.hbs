@@ -2,7 +2,7 @@
 
 $(document).ready(function () {
 
-	$('.btn-submit').click(function(evt) {
+	$('.btn-submit#signup').click(function(evt) {
 		// var pkg = getFormData($(this));
 		console.log(evt, "evt");
 		var data = {};
@@ -16,37 +16,41 @@ $(document).ready(function () {
 		console.log(data);
 
 		if (!data.password || !data.username || !data.email) {
-			console.log ("fucke");
+			console.log ("signup error");
 			  
 			} else {
-				console.log("dick");
+				
 
-				$.post("/api/create",data, function(data){
-            if(data==='done')
-              {
-                alert("login success");
-              }
+				$.post("/api/create/",data, function(data){
+					console.log(data);
+					console.log("signup success");
+            
           });
-				// $.post( 
-			 //  	"/api/create",
-				// 	data
-					// function( data ) {
+			}
 
-					// 	console.log("hi");
+	});
 
-					// 	// if(data.error_code !== undefined) {
+	$('.btn-submit#login').click(function(evt) {
+		// var pkg = getFormData($(this));
+		console.log(evt, "evt");
+		var data = {};
+		// var email = false;
 
-					// 	// 	if(data.error_code === 'need_content')
-					// 	// 		$('#session-create #categories').addClass('invalid');
-							
-					// 	// 	$('#session-create .error').text(data.msg).fadeIn();
-							
-					// 	// 	return;
-					// 	// }
+		data.username = $('#username').val();
+		data.password = $('#password').val();
+		// data.email = $('#email').val();
 
-					//   window.location = data;
-					// }
-				// );
+		console.log(data);
+
+		if (!data.password || !data.username) {
+			console.log ("login error");
+			  
+			} else {
+				console.log("login success");
+
+				$.get("/api/find/", data, function(data){
+					console.log (data, "data set");
+          });
 			}
 
 	});
@@ -80,7 +84,7 @@ $(document).ready(function () {
 
 			return pkg;
 
-		}
+		};
 
 		//player login - JR
 

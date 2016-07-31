@@ -33,10 +33,8 @@ exports = module.exports = function(app) {
     
     app.get('/', routes.views.index);
 
-    // app.get('/login', function(req, res) {
-    //   res.sendfile('views/login.html');
-    // });
+    app.get('/api/find/', keystone.middleware.api, routes.api.login.get);
 
-    app.post('/api/create', keystone.middleware.api, routes.api.data.create);
+    app.post('/api/create/', keystone.middleware.api, routes.api.signup.create);
     
 }

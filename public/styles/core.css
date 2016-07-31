@@ -7,5 +7,8 @@
 .app-container .hidden {
   display: none; }
 
-.app-container .menu .email {
-  display: none; }
+.app-container .menu {
+  width: 80%;
+  margin: 0 auto; }
+  .app-container .menu #email {
+    display: none; }

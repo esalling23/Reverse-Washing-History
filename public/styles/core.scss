@@ -12,6 +12,8 @@ $color-yellow: #ffff66;
 
 .app-container {
 
+
+
 	.red {
 		background-color: $color-red;
 	}
@@ -28,7 +30,10 @@ $color-yellow: #ffff66;
 	}
 
 	.menu {
-		.email {
+		width: 80%;
+		margin: 0 auto;
+		
+		#email {
 			display: none;
 		}
 	}
