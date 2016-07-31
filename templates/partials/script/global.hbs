@@ -4,7 +4,7 @@ $(document).ready(function () {
 
 	$('.btn-submit#signup').click(function(evt) {
 		// var pkg = getFormData($(this));
-		console.log(evt, "evt");
+		// console.log(evt, "evt");
 		var data = {};
 		/*data.contentCategories = $(".form :input.active").map(function(){
 														    return $(this).val();
@@ -32,7 +32,7 @@ $(document).ready(function () {
 
 	$('.btn-submit#login').click(function(evt) {
 		// var pkg = getFormData($(this));
-		console.log(evt, "evt");
+		// console.log(evt, "evt");
 		var data = {};
 		// var email = false;
 
@@ -50,6 +50,7 @@ $(document).ready(function () {
 
 				$.get("/api/find/", data, function(data){
 					console.log (data, "data set");
+					 $('#app-content').html(data);
           });
 			}
 
