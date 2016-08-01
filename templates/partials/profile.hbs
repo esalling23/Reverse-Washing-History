@@ -1,4 +1,25 @@
 <div class="profile">
 <h2>Player Profile</h2>
-{{jsonPrint this}}
+{{!-- {{jsonPrint this}} --}}
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#dashboard-tab" aria-controls="dashboard-tab" role="tab" data-toggle="tab">Dashboard</a></li>
+    <li role="presentation"><a href="#profile-tab" aria-controls="profile-tab" role="tab" data-toggle="tab">Profile</a></li>
+    <li role="presentation"><a href="#map-tab" aria-controls="map-tab" role="tab" data-toggle="tab">Map</a></li>
+</ul>
+
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="dashboard-tab">
+
+    <p>-- DASHBOARD --</p>
+
+
+
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="profile-tab">{{>account}}</div>
+
+    <div role="tabpanel" class="tab-pane" id="map-tab">{{>map}}</div>
+
+  </div>
+
 </div>	
