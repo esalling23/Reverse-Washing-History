@@ -22,7 +22,7 @@ $(document).ready(function () {
 				
 
 				$.post("/api/create/",data, function(data){
-					console.log(data);
+					// console.log(data);
 					console.log("signup success");
             
           });
@@ -49,7 +49,7 @@ $(document).ready(function () {
 				console.log("login success");
 
 				$.get("/api/find/", data, function(data){
-					console.log (data, "data set");
+					// console.log (data, "data set");
 					 $('#app-content').html(data);
           });
 			}
@@ -113,6 +113,29 @@ $(document).ready(function () {
 		// 				socket.emit('login:submit', emitData({username: playerName, uid: data.uid}));
 
 		// 			}
+
+		//GooGle Maps
+
+      // var map;
+      // var initMap = function() {
+      // 	console.log("initializing map..")
+      //   map = new google.maps.Map(document.getElementById('map'), {
+      //     center: {lat: -34.397, lng: 150.644},
+      //     zoom: 2
+      //   });
+      //   console.log(map);
+      // };
+
+
+      var map;
+
+		 $('#map-tab').click(function (e) {
+				console.log(e);
+		  	// initMap();
+		  	console.log("initialized");
+		  	google.maps.event.trigger(map, 'resize');
+				map.setZoom( map.getZoom() );
+		});
 });
 
 

@@ -29,7 +29,7 @@ exports.get = function(req, res) {
 	  	
 
 	  	Templates.Load("partials/profile", data, function(html) {
-	  		console.log(html, " --- html --- ");
+	  		// console.log(html, " --- html --- ");
 	  		// console.log(data, " --- html --- ");
             res.send(html);
 
