@@ -4,8 +4,11 @@ body, html {
   margin: 0;
   padding: 0; }
 
-#app-contents {
+#app-content {
   height: 100%; }
+  #app-content #map {
+    height: 200px;
+    width: 200px; }
 
 .app-container {
   height: 100%; }
@@ -27,6 +30,3 @@ body, html {
     .app-container .profile .tab-pane {
       height: 100%;
       width: 100%; }
-    .app-container .profile #map {
-      height: 200px;
-      width: 200px; }

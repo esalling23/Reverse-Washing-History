@@ -1,6 +1,13 @@
+
+
 <script type="text/javascript">
 
+var section = $('.section-id');
+var sectionId = section.attr("id");
+
 $(document).ready(function () {
+
+	if (sectionId === "signup") {
 
 	$('.btn-submit#signup').click(function(evt) {
 		// var pkg = getFormData($(this));
@@ -16,19 +23,28 @@ $(document).ready(function () {
 		console.log(data);
 
 		if (!data.password || !data.username || !data.email) {
-			console.log ("signup error");
+			console.log ("empty fields");
 			  
 			} else {
 				
 
 				$.post("/api/create/",data, function(data){
 					// console.log(data);
-					console.log("signup success");
+					console.log("trying to create player");
             
           });
 			}
 
 	});
+
+
+
+
+
+}
+
+
+if (sectionId === "login") {
 
 	$('.btn-submit#login').click(function(evt) {
 		// var pkg = getFormData($(this));
@@ -43,10 +59,10 @@ $(document).ready(function () {
 		console.log(data);
 
 		if (!data.password || !data.username) {
-			console.log ("login error");
+			console.log ("empty fields");
 			  
 			} else {
-				console.log("login success");
+				console.log("checking login info");
 
 				$.get("/api/find/", data, function(data){
 					// console.log (data, "data set");
@@ -87,32 +103,10 @@ $(document).ready(function () {
 
 		};
 
-		//player login - JR
 
-		// function playerLogin(data) {
 
-		// 				// Save current game code to local storage
-		// 				sessionStorage.setItem('active', true);
 
-		// 				// Open socket connection
-		// 				if(socket === undefined) {
-		// 			    socket = io('//{{host}}');
-		// 			    registerEvents();
-		// 			  }
-
-		// 				playerName = $('#player_name').val();
-		// 				sessionStorage.setItem('username', playerName);
-
-		// 				socket.on('disconnect', function(){
-		// 				   // alert('disconnected!')
-		// 				});
-
-		// 				console.log('Connecting to game "' + gameCode + '".');
-
-		//         // Log player in
-		// 				socket.emit('login:submit', emitData({username: playerName, uid: data.uid}));
-
-		// 			}
+	}
 
 		//GooGle Maps
 
@@ -128,11 +122,19 @@ $(document).ready(function () {
 
 
       var map;
+      initMap = function() {
+      	console.log("initializing map..")
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 2 
+        });
+        console.log(map);
+      };
 
 		 $('#map-tab').click(function (e) {
 				console.log(e);
 		  	// initMap();
-		  	console.log("initialized");
+		  	console.log("YOU CLICKED ON A MAP TAB");
 		  	google.maps.event.trigger(map, 'resize');
 				map.setZoom( map.getZoom() );
 		});
@@ -140,3 +142,4 @@ $(document).ready(function () {
 
 
 </script>
+

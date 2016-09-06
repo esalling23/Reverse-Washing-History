@@ -17,8 +17,14 @@ body, html {
 
 }
 
-#app-contents {
+#app-content {
 	height: 100%;
+
+	#map { 
+			height: 200px;
+			width:200px;
+
+		}
 }
 .app-container {
 	height: 100%;
@@ -60,11 +66,7 @@ body, html {
 			width: 100%;
 		}
 
-		#map { 
-			height: 200px;
-			width:200px;
-
-		}
+		
 	}
 
 }

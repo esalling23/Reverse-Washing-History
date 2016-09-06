@@ -12,11 +12,13 @@ exports.get = function(req, res) {
 
 	var query = Player.model.findOne({$or:[{userName:req.query.username},{email:req.query.username}]});
 
+	console.log(query, " is the response");
+
 	query.select('userName email pass');
 
 	query.exec(function (err, person) {
 		console.log ("person:" + person + ":person");
-	  if (err) return handleError(err);
+	  if (err) return handleError("we havenot found your person" + err);
 	  console.log('This is %s with password %s and email %s.', person.userName, person.pass, person.email);
 	  var data = {username:person.userName, password:person.pass, email:person.email}
 	  if (person.pass === req.query.password) {
@@ -37,6 +39,7 @@ exports.get = function(req, res) {
 
 	  } else {
 	  	console.log("wrong password");
+	  	socket.emit("login:wrong_password");
 	  }
 	});
 
