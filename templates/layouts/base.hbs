@@ -74,6 +74,7 @@
 			{{/if}}
 			<!-- The content block should contain the body of your template's content-->
 			{{{body}}}
+			<div class="hidden section-id" id="login"></div>
 		</div>
 		<div class="container">
 			<div id="footer">
@@ -86,13 +87,14 @@
 		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>  
 		<script src="/js/core.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
-		<script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdV3l0ZuqBKz0K359nlAobLfYClFc8pBs&callback=initMap">
-    </script>
+		
 
 
 		{{> script/global }}
 
+<script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdV3l0ZuqBKz0K359nlAobLfYClFc8pBs&callback=initMap">
+    </script>
 
 	</body>
 </html>

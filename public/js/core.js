@@ -2,7 +2,8 @@
 
 //Global Variables
 var player = [];
-var section = $('.section');
+var section = $('.section-id');
+var sectionId = section.attr("id");
 
 $(function() {
 
@@ -10,7 +11,8 @@ $(function() {
 	var sectionChange = function (page) {
 		console.log (page);
 		section.attr("id", page);
-		// return section.attr("id");
+		console.log(section.attr("id") + " is the section-id");
+		return section.attr("id");
 	};
 
 	var validateUser = function(isNew, info) {
@@ -37,10 +39,9 @@ $(function() {
     var user = $('#username');
 	var pass = $('#password');
 	var email = $('#email');
-	console.log (section.attr("id"));
     
 	login.click(function() {
-		console.log ("user clicked 'login'!");
+		// console.log ("user clicked 'login'!");
 
 		if (section.attr("id") === "login"){
     		if (user.val() === '' || pass.val() === '') {
@@ -67,7 +68,7 @@ $(function() {
 	signup.click(function() {
 		console.log ("user clicked 'signup'!");
 
-		if (section.attr("id") === "login"){
+		if (sectionId === "login"){
 	    		error.fadeOut();
 
     		email.fadeIn();

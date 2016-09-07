@@ -18,4 +18,5 @@ Player.add({
 });
  
 Player.register();
+Player.defaultColumns = "userName, email, pass";
 // module.exports = keystone.model('Player', Player);
