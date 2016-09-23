@@ -4,7 +4,17 @@ body, html {
   margin: 0;
   padding: 0; }
 
+#body {
+  background-color: #666666;
+  color: white;
+  height: 100%;
+  width: 100%; }
+
+.center {
+  text-align: center; }
+
 #app-content {
+
   height: 100%; }
   #app-content #map {
     height: 200px;
@@ -19,10 +29,21 @@ body, html {
   .app-container .hidden {
     display: none; }
   .app-container .menu {
-    width: 80%;
+    position: relative;
+    width: 60%;
     margin: 0 auto; }
     .app-container .menu #email {
       display: none; }
+    .app-container .menu input {
+      display: block;
+      position: relative;
+      width: 100%;
+      border: 1px solid black; }
+      .app-container .menu input.btn-submit {
+        width: 60%;
+        margin: 0 auto;
+        position: relative;
+        background-color: #0066cc; }
   .app-container .profile {
     height: 100%; }
     .app-container .profile .tab-content {
