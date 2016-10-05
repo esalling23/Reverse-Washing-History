@@ -44,6 +44,8 @@ $(document).ready(function () {
 }
 
 
+
+
 if (sectionId === "login") {
 
 	$('.btn-submit#login').click(function(evt) {
@@ -69,6 +71,10 @@ if (sectionId === "login") {
 					 $('#app-content').html(data);
           });
 			}
+
+	});
+
+	$('.btn-submit#admin').click(function(evt){
 
 	});
 
@@ -108,36 +114,62 @@ if (sectionId === "login") {
 
 	}
 
-		//GooGle Maps
-
-      // var map;
-      // var initMap = function() {
-      // 	console.log("initializing map..")
-      //   map = new google.maps.Map(document.getElementById('map'), {
-      //     center: {lat: -34.397, lng: 150.644},
-      //     zoom: 2
-      //   });
-      //   console.log(map);
-      // };
-
-
+//GOOGLE MAPS
       var map;
+      	var mapOptions = {
+					center: new google.maps.LatLng(50, -10),
+					zoom: 5,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
       initMap = function() {
       	console.log("initializing map..")
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 2 
-        });
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
         console.log(map);
       };
 
-		 $('#map-tab').click(function (e) {
+		 $('#map-tab').on('show', function (e) {
 				console.log(e);
 		  	// initMap();
 		  	console.log("YOU CLICKED ON A MAP TAB");
 		  	google.maps.event.trigger(map, 'resize');
 				map.setZoom( map.getZoom() );
 		});
+
+
+
+		 // News Feed
+
+		 scrapeTheWeb = function() {
+  
+		  // The URL of the page to scrape
+		  var url   = "http://www.nytimes.com/pages/technology/index.html";
+		  
+		  // The XPATH for the data to extract
+		  var xpath = '//div[@class="story"]//h3/a';
+		  
+		  // Contruct a YQL URL
+		  var query = "select * from html where url = '" + url + "' and xpath = '" + xpath + "'";
+		  
+		  // Notice that we request the data in JSON format
+		  var yql   = "https://query.yahooapis.com/v1/public/yql?format=json&q=" + encodeURIComponent(query);
+		  
+		  var response = UrlFetchApp.fetch(yql);
+		  
+		  // Parse the JSON response from YQL
+		  var json = JSON.parse(response.getContentText());
+		  
+		  var urls = json.query.results.a;
+		  
+		  for (var url in urls) {
+		    
+		    // Output the scrapped URLs and titles
+		    console.log(urls[url].content + " - " + urls[url].href);
+		    
+		  }
+		  
+		}
+
+
 });
 
 
