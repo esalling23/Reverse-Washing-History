@@ -37,65 +37,67 @@ body, html {
 	#map { 
 			height: 200px;
 			width:200px;
+			overflow: visible;
 
 		}
-
-.app-container {
-	height: 100%;
-
-
-	.red {
-		background-color: $color-red;
 	}
 
-	.error {
-		display: none;
-	}
-
-	.hidden {
-		display: none;
-		
-	}
-
-	.menu {
-		position: relative;
-		width: 60%;
-		margin: 0 auto;
+	.app-container {
+		height: 100%;
 
 
-		#email {
+		.red {
+			background-color: $color-red;
+		}
+
+		.error {
 			display: none;
 		}
 
-		input {
-			display: block;
-			position: relative;
-			width: 100%;
-			border: 1px solid black;
+		.hidden {
+			display: none;
 			
-			background-color: $color-red;
+		}
 
-			&.btn-submit {
-				margin: 0 auto;
+		.menu {
+			position: relative;
+			width: 60%;
+			margin: 0 auto;
+
+
+			#email {
+				display: none;
+			}
+
+			input {
+				display: block;
 				position: relative;
-				background-color: $color-blue;
+				width: 100%;
+				border: 1px solid black;
+				
+				background-color: $color-red;
+
+				&.btn-submit {
+					margin: 0 auto;
+					position: relative;
+					background-color: $color-blue;
+				}
 			}
 		}
-	}
 
-	.profile {
-	height: 100%;
+		.profile {
+		height: 100%;
 
-		.tab-content {
-			height: 100%;
+			.tab-content {
+				height: 100%;
+			}
+
+			.tab-pane{
+				height: 100%;
+				width: 100%;
+			}
+
+			
 		}
-
-		.tab-pane{
-			height: 100%;
-			width: 100%;
-		}
-
-		
-	}
-
+	
 }

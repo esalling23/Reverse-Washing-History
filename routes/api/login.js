@@ -18,7 +18,11 @@ exports.get = function(req, res) {
 
 	query.exec(function (err, person) {
 		console.log ("person:" + person + ":person");
-	  if (err) return handleError("we havenot found your person" + err);
+	  if (err) return handleError("we have not found your person" + err);
+	  if (!person) {
+	  	socket.emit("login:person_not_found");
+	  	return;
+	  }
 	  console.log('This is %s with password %s and email %s.', person.userName, person.pass, person.email);
 	  var data = {username:person.userName, password:person.pass, email:person.email}
 	  if (person.pass === req.query.password) {
@@ -40,6 +44,7 @@ exports.get = function(req, res) {
 	  } else {
 	  	console.log("wrong password");
 	  	socket.emit("login:wrong_password");
+	  	return;
 	  }
 	});
 

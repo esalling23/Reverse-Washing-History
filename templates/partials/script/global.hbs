@@ -109,37 +109,83 @@ if (sectionId === "login") {
 	}
 
 		//GooGle Maps
+    initialize = function() {
 
-      // var map;
-      // var initMap = function() {
-      // 	console.log("initializing map..")
-      //   map = new google.maps.Map(document.getElementById('map'), {
-      //     center: {lat: -34.397, lng: 150.644},
-      //     zoom: 2
-      //   });
-      //   console.log(map);
-      // };
+    	console.log("initializing map");
+			var myCenter=new google.maps.LatLng(10, 20);
+			var marker=new google.maps.Marker({
+			    position:myCenter
+			});
+		  var mapProp = {
+		      center:myCenter,
+		      zoom: 13,
+		      draggable: false,
+		      scrollwheel: false,
+		      mapTypeId:google.maps.MapTypeId.ROADMAP
+		  };
+		  
+		  var map = new google.maps.Map(document.getElementById("map"), mapProp);
+		  console.log (map);
+		  // marker.setMap(map);
+		    
+		  // google.maps.event.addListener(marker, 'click', function() {
+		      
+		  //   infowindow.setContent(contentString);
+		  //   infowindow.open(map, marker);
+		    
+		  // }); 
+		}
+
+		$('#map-tab').on('click', function (e) {
+			var target = $(e.target).attr("href");
+					console.log(target);
+			  	// initMap();
+			  	console.log("YOU CLICKED ON A MAP TAB");
+			  	google.maps.event.trigger(map, 'initialize');
+					// map.setZoom( map.getZoom() );
+			});
+
+		// window.addEventListener('load',function(){
+  //     if(document.getElementById('map')){
+  //       google.load("maps", "3",{
+  //         callback:function(){
+  //            new google.maps.Map(document.getElementById('map'), {
+  //               center: new google.maps.LatLng(0,0),
+  //               zoom: 3
+  //             });
+  //         }
+  //       });     
+  //     }
+  //   },false);
 
 
-      var map;
-      initMap = function() {
-      	console.log("initializing map..")
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 2 
-        });
-        console.log(map);
-      };
 
-		 $('#map-tab').click(function (e) {
-				console.log(e);
-		  	// initMap();
-		  	console.log("YOU CLICKED ON A MAP TAB");
-		  	google.maps.event.trigger(map, 'resize');
-				map.setZoom( map.getZoom() );
-		});
+		// function makeMarker(options) { 
+		//   var pushPin = new google.maps.Marker({ map: map }); 
+		//   pushPin.setOptions(options); 
+
+		//   google.maps.event.addListener(pushPin, "click", function () { 
+		// 	  	infoWindow.setOptions(options); 
+		// 	  	infoWindow.open(map, pushPin); 
+		// 	});
+		//   markerBounds.extend(options.position); 
+		//   markerArray.push(pushPin);
+
+		//   return pushPin; 
+		// };
+		// google.maps.event.addListener(map, "click", function () {
+		//  infoWindow.close(); 
+	 //  }); 
+
+	 //      makeMarker({ title: "Test1", position: new google.maps.LatLng(10, 10), content: "Content1", icon: '' });
+	 //      makeMarker({ title: "Test2", position: new google.maps.LatLng(20, 20), content: "Content2", icon: '' });
+	 //      makeMarker({ title: "Test3", position: new google.maps.LatLng(30, 30), content: "Content3", icon: '' });
+	      
+			
 });
 
 
 </script>
+
+
 
