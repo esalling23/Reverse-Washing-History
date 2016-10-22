@@ -14,36 +14,3 @@
 		</form>
 	</div>
 </div>
-
-<b>Stories: </b> <input type='text' size='15' id='story' value='world'/><br/><br/>
-<button id='get_stories'>Get Stories</button>
-<div id='results'></div>
-<script src="https://yui-s.yahooapis.com/3.8.0/build/yui/yui-min.js"></script>
-<script>
-// Calls YQL Web service, parses results, and outputs results
-YUI().use('node', 'event', 'yql', function(Y) {
-  Y.one("#get_stories").on('click',function() {
-    var stories = "<div><ul>";
-    var story = Y.one('#story').get('value') || 'world';
-    var news_url = "http://news.yahoo.com/";
-    var yql_query = "select * from html where url='" + news_url + story + "'";
-    yql_query += " and xpath='//div[@class=\"content\"]//div[@class=\"txt\"]/p'";
-    Y.YQL(yql_query, function(response) {
-      if(response.query.results){
-        var no_stories = response.query.results.p.length;
-        var paras = response.query.results.p;
-        paras.forEach(function(node,index) {
-          if (node.hasOwnProperty('a') && node.hasOwnProperty('content')) {
-            stories += "<li><a href='" + news_url + node.a.href + "' title='" + node.a.title + "'>" + node.content + "</a></li>";
-          }
-       });
-      } else{
-        stories += "Sorry, could not find any headlines for the category " + story + ". Please try another one.";
-      }
-      stories += "</ul></div>";
-      Y.one('#results').append(stories);
-      stories = "";
-    });
-  }); 
-});       
-</script>
