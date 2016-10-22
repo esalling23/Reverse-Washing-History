@@ -6,17 +6,16 @@ var Player = new keystone.List('Player', {
 		singular: 'Player',
 		track: true,
 		// nodelete: true,
-		nocreate: false
+		nocreate: false, 
+        map: {name: 'userName'}
 });
  
 Player.add({
     userName: { type: String, required: true, initial: true, index: true },
     email: { type: Types.Email, initial: true, required: true, index: true },
-    pass: { type: String }
-    // visited: { type: Types.Relationship}
-    // resources: { types: Types.Relationship, ref: }
+    passWord: { type: Types.Password, initial:true, required: true}
 });
  
 Player.register();
-Player.defaultColumns = "userName, email, pass";
+Player.defaultColumns = "userName, email, passWord";
 // module.exports = keystone.model('Player', Player);

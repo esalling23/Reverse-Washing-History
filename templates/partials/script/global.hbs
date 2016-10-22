@@ -44,6 +44,8 @@ $(document).ready(function () {
 }
 
 
+
+
 if (sectionId === "login") {
 
 	$('.btn-submit#login').click(function(evt) {
@@ -69,6 +71,10 @@ if (sectionId === "login") {
 					 $('#app-content').html(data);
           });
 			}
+
+	});
+
+	$('.btn-submit#admin').click(function(evt){
 
 	});
 
@@ -108,84 +114,48 @@ if (sectionId === "login") {
 
 	}
 
-		//GooGle Maps
-    initialize = function() {
+//GOOGLE MAPS
+      
 
-    	console.log("initializing map");
-			var myCenter=new google.maps.LatLng(10, 20);
-			var marker=new google.maps.Marker({
-			    position:myCenter
-			});
-		  var mapProp = {
-		      center:myCenter,
-		      zoom: 13,
-		      draggable: false,
-		      scrollwheel: false,
-		      mapTypeId:google.maps.MapTypeId.ROADMAP
-		  };
+		 
+
+
+
+		 // News Feed
+
+		 scrapeTheWeb = function() {
+  
+		  // The URL of the page to scrape
+		  var url   = "http://www.nytimes.com/pages/technology/index.html";
 		  
-		  var map = new google.maps.Map(document.getElementById("map"), mapProp);
-		  console.log (map);
-		  // marker.setMap(map);
+		  // The XPATH for the data to extract
+		  var xpath = '//div[@class="story"]//h3/a';
+		  
+		  // Contruct a YQL URL
+		  var query = "select * from html where url = '" + url + "' and xpath = '" + xpath + "'";
+		  
+		  // Notice that we request the data in JSON format
+		  var yql   = "https://query.yahooapis.com/v1/public/yql?format=json&q=" + encodeURIComponent(query);
+		  
+		  var response = UrlFetchApp.fetch(yql);
+		  
+		  // Parse the JSON response from YQL
+		  var json = JSON.parse(response.getContentText());
+		  
+		  var urls = json.query.results.a;
+		  
+		  for (var url in urls) {
 		    
-		  // google.maps.event.addListener(marker, 'click', function() {
-		      
-		  //   infowindow.setContent(contentString);
-		  //   infowindow.open(map, marker);
+		    // Output the scrapped URLs and titles
+		    console.log(urls[url].content + " - " + urls[url].href);
 		    
-		  // }); 
+		  }
+		  
 		}
 
-		$('#map-tab').on('click', function (e) {
-			var target = $(e.target).attr("href");
-					console.log(target);
-			  	// initMap();
-			  	console.log("YOU CLICKED ON A MAP TAB");
-			  	google.maps.event.trigger(map, 'initialize');
-					// map.setZoom( map.getZoom() );
-			});
 
-		// window.addEventListener('load',function(){
-  //     if(document.getElementById('map')){
-  //       google.load("maps", "3",{
-  //         callback:function(){
-  //            new google.maps.Map(document.getElementById('map'), {
-  //               center: new google.maps.LatLng(0,0),
-  //               zoom: 3
-  //             });
-  //         }
-  //       });     
-  //     }
-  //   },false);
-
-
-
-		// function makeMarker(options) { 
-		//   var pushPin = new google.maps.Marker({ map: map }); 
-		//   pushPin.setOptions(options); 
-
-		//   google.maps.event.addListener(pushPin, "click", function () { 
-		// 	  	infoWindow.setOptions(options); 
-		// 	  	infoWindow.open(map, pushPin); 
-		// 	});
-		//   markerBounds.extend(options.position); 
-		//   markerArray.push(pushPin);
-
-		//   return pushPin; 
-		// };
-		// google.maps.event.addListener(map, "click", function () {
-		//  infoWindow.close(); 
-	 //  }); 
-
-	 //      makeMarker({ title: "Test1", position: new google.maps.LatLng(10, 10), content: "Content1", icon: '' });
-	 //      makeMarker({ title: "Test2", position: new google.maps.LatLng(20, 20), content: "Content2", icon: '' });
-	 //      makeMarker({ title: "Test3", position: new google.maps.LatLng(30, 30), content: "Content3", icon: '' });
-	      
-			
 });
 
 
 </script>
-
-
 

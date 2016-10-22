@@ -1,35 +1,7 @@
 {{!-- <div class="{{#ifeq location.shape "rectangle"}} rect {{else}} square {{/ifeq}} {{#ifeq location.size "small"}} col-sm-1 SM {{else}} col-sm-2 MD {{/ifeq}}">
 	<p>{{location.size}}{{location.shape}}{{location.name}}</p>
 </div>  --}}
-		
-
-		<script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdV3l0ZuqBKz0K359nlAobLfYClFc8pBs&callback=initMap">
-    </script>
-
-    <script>
-    
-      var mapOptions = {
-        center: {lat: 50, lng: 50}, 
-        zoom: 2
-      };
-
-      var map;
-
-      var initMap = function() {
-        console.log("initializing map..")
-        map = new google.maps.Map(document.getElementById("map"), mapOptions);
-        console.log(map);
-      };
-
-      $('#map_content').on('shown', function(e) {
-        if( map == undefined) {
-          map = new google.maps.Map(document.getElementById("map"), mapOptions);
-        }
-      });
 
 
-     
-    </script>
 
     

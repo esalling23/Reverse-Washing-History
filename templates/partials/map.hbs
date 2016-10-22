@@ -1,7 +1,31 @@
 
     <div id="map"></div>
 
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdV3l0ZuqBKz0K359nlAobLfYClFc8pBs&callback=initialize">
+    <script 
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdV3l0ZuqBKz0K359nlAobLfYClFc8pBs&callback=initMap" async defer>
     </script>
 
+    <script type="text/javascript">
+    var map;
+      	
+      window.initMap = function() {
+      	console.log("initializing map..")
+      	var mapOptions = {
+					center: new google.maps.LatLng(50, -10),
+					zoom: 5,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        console.log(map);
+      };
+    $('#map-tab').on('click', function (e) {
+				console.log(e);
+				
+		  	// initMap();
+		  	google.maps.event.trigger(map, 'resize');
+				map.setZoom( map.getZoom() );
+						  	console.log("YOU CLICKED ON A MAP TAB", map);
+
+		});
+
+    </script>
