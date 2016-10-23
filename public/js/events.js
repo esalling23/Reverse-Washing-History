@@ -5,7 +5,7 @@ var appEvents = function(eventId, eventData) {
 
     case 'login:wrong_password':
 
-    	break;
+  	break;
 
   }
 

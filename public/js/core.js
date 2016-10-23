@@ -10,9 +10,12 @@ $(function() {
 
 	var sectionChange = function (page) {
 		console.log (page);
+
 		section.attr("id", page);
-		console.log(section.attr("id") + " is the section-id");
-		return section.attr("id");
+
+		sectionId = section.attr("id");
+
+		console.log(sectionId + " is the section-id");
 	};
 
 	var validateUser = function(isNew, info) {
@@ -89,6 +92,9 @@ $(function() {
 		
 	});
 
+
+
+	/
 	
     
 
