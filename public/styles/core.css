@@ -26,6 +26,10 @@ body {
     .app-container #app-content .map-container #map {
       height: 60%;
       width: 100%; }
+    .app-container #app-content .map-container #map-loader {
+      height: 60%;
+      width: 100%;
+      display: none; }
   .app-container #app-content .menu {
     position: relative;
     width: 60%;

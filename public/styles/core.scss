@@ -50,9 +50,17 @@ body {
 				#map {
 					height: 60%;
 					width: 100%;
+
+				}
+				#map-loader {
+					height: 60%;
+					width: 100%;
+					display: none;
 				}
 
+
 			}
+
 
 
 			.menu {

@@ -1,5 +1,9 @@
 
-    <div class="map-container"><div id="map"></div></div>
+    <div class="map-container">
+      <div id="map"></div>
+      <div class="loading" id="map-loader">Loading</div>
+
+    </div>
 
     <script 
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdV3l0ZuqBKz0K359nlAobLfYClFc8pBs&callback=initMap" async defer>
@@ -7,29 +11,76 @@
 
     <script type="text/javascript">
     var map;
+    var initializing;
       	
       window.initMap = function() {
-      	console.log("initializing map..")
+      	console.log("initializing map..");
+        initializing = true;
       	var mapOptions = {
-					center: new google.maps.LatLng(42.322185, -71.078621),
-					zoom: 11,
+					// center: new google.maps.LatLng(42.322185, -71.078621),
+					zoom: 18,
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				};
+
+
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
         // console.log(map);
         google.maps.event.trigger(map, 'resize');
         map.setZoom( map.getZoom() );
+
+
+
+        console.log(map.zoom);
+        var infoWindow = new google.maps.InfoWindow({map: map});
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            map.setCenter(pos);
+            map.setZoom(18);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+
+        // Try HTML5 geolocation.
+        
         
 
-        var overlay = new google.maps.Polygon({
-          paths: triangleCoords,
-          strokeColor: '#FF0000',
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: '#FF0000',
-          fillOpacity: 0.35
-        });
+        // var overlay = new google.maps.Polygon({
+        //   paths: triangleCoords,
+        //   strokeColor: '#FF0000',
+        //   strokeOpacity: 0.8,
+        //   strokeWeight: 2,
+        //   fillColor: '#FF0000',
+        //   fillOpacity: 0.35
+        // });
+        initializing = false;
       };
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+      }
+
+
+      if (initializing = true) {
+        $('#map-loader.loading').show();
+      } else {
+        $('#map-loader.loading').hide();
+      }
+
 
   //   $('#map-tab').on('click', function (e) {
 		// 		console.log(e);
@@ -44,6 +95,7 @@
     $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
         google.maps.event.trigger(map, 'resize');
         initMap();
+
     });
 
     </script>
