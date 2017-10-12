@@ -47,7 +47,11 @@ exports.get = function(req, res) {
 
 			  } else {
 			  	console.log("wrong password");
-			  	// socket.emit("login:wrong_password");
+			  	return res.json({
+			        success: false,
+			        session: false,
+			        message: (err && err.message ? err.message : false) || 'Sorry, there was an issue signing you in, please try again.'
+			    });
 			  }
 	  });
 		// pass._.compare(passwordInput)

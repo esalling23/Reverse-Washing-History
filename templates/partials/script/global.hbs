@@ -81,14 +81,14 @@ if (sectionId === "login") {
 		if (!data.password || !data.username) {
 			console.log ("empty fields");
 			  
-			} else {
-				console.log("checking login info");
+		} else {
+			console.log("checking login info");
 
-				$.get("/api/find/", data, function(data){
-					// console.log (data, "data set");
-					 $('#app-content').html(data);
-          });
-			}
+			$.get("/api/find/", data, function(data){
+				// console.log (data, "data set");
+				 $('#app-content').html(data);
+            });
+		}
 
 	});
 
